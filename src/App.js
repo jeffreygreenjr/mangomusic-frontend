@@ -1,23 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from "react-router-dom";
+
+// IMPORT COMPONENTS
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+// IMPORT PAGES
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Music from "./pages/Projects";
 
 function App() {
+   // HEROKU URL for your backend
+   const URL = "http://localhost:4000/";
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Header />
+      
+      <Routes>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/music">
+          <Music URL={URL} />
+        </Route>
+        <Route path="/about">
+          <About URL={URL} />
+        </Route>
+      </Routes>
+      
+      <Footer />
+    
     </div>
   );
 }
