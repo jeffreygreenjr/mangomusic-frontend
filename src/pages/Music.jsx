@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+import AudioPlayer from '../components/AudioPlayer';
 
 function Music(props) {
 
     // CREATE STATE TO HOLD MUSIC
     const [music, setMusic] = useState([]);
-    const [playing, setPLaying] = useState(false);
-    const [currentSong, setCurrentSong] = useState([])
 
     // FUNCTION TO MAKE API CALL
     const getMusicData = async () => {
@@ -48,8 +47,9 @@ function Music(props) {
                     {/* <button onClick={this.togglePlay}>
                         <a href="{musicsong.previewUrl}">Preview Song</a> 
                     </button> */}
-                    <ReactAudioPlayer src={musicsong.previewUrl} />
+                    <a href={musicsong.previewUrl}>Preview Song</a>
                     
+                    <ReactAudioPlayer src={musicsong.previewUrl} />                    
                 </div>
             </div>
         ))

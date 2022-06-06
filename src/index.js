@@ -7,13 +7,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
 
 // WRAP APP INSIDE ROUTER TO ENABLE USING ROUTE
-ReactDOM.render(
+const container = document.getElementById('root');
+
+// create a root
+const root = ReactDOM.createRoot(container);
+
+//render app to root
+root.render(
   <Router>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Router>,
-  document.getElementById("root")
+  </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function

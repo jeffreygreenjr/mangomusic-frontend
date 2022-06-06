@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 // IMPORT COMPONENTS
 import Header from "./components/Header";
@@ -9,9 +10,15 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Music from "./pages/Music";
 
+
+
 function App() {
    // HEROKU URL for your backend
    const URL = "https://mangomusic-backend.herokuapp.com/";
+
+    const [songs, setSongs] = useState([])
+    const [playing, setPLaying] = useState(false);
+    const [currentSong, setCurrentSong] = useState([])
 
   return (
     <div className="App">
