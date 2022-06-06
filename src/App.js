@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from "react-router-dom";
 
@@ -8,11 +7,11 @@ import Footer from "./components/Footer";
 // IMPORT PAGES
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Music from "./pages/Projects";
+import Music from "./pages/Music";
 
 function App() {
    // HEROKU URL for your backend
-   const URL = "http://localhost:4000/";
+   const URL = "https://mangomusic-backend.herokuapp.com/";
 
   return (
     <div className="App">
@@ -20,15 +19,9 @@ function App() {
       <Header />
       
       <Routes>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/music">
-          <Music URL={URL} />
-        </Route>
-        <Route path="/about">
-          <About URL={URL} />
-        </Route>
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/music" element={<Music URL={URL}/>} />
+        <Route path="/about" element={<About URL={URL} />} />
       </Routes>
       
       <Footer />
