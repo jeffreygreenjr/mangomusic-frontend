@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 // IMPORT COMPONENTS
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SideBar from "./components/SideBar";
 // IMPORT PAGES
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -17,22 +18,18 @@ function App() {
    const URL = "https://mangomusic-backend.herokuapp.com/";
 
     const [songs, setSongs] = useState([])
-    const [playing, setPLaying] = useState(false);
+    const [playing, setPlaying] = useState(false);
     const [currentSong, setCurrentSong] = useState([])
 
   return (
     <div className="App">
-      
-      <Header />
-      
-      <Routes>
-        <Route exact path="/" element={<Home/>} />
-        <Route path="/music" element={<Music URL={URL}/>} />
-        <Route path="/about" element={<About URL={URL} />} />
-      </Routes>
-      
-      <Footer />
-    
+        <div className="ContentContainer">
+          <Routes>
+            <Route exact path="/" element={<Home/>} />
+            <Route path="/music" element={<Music URL={URL}/>} />
+            <Route path="/about" element={<About URL={URL} />} />
+          </Routes>
+        </div>
     </div>
   );
 }

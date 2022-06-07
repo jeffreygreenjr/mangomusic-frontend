@@ -1,6 +1,6 @@
 :root {
     --white: #fff;
-    --active-color: slategrey;
+    --active-color: rgb(76, 75, 75);
   }
 
   * {
@@ -12,6 +12,7 @@ html {
     height: 100%;
     background: var(--active-color);
     transition: background 0.4s ease;
+    color: white;
 }
   
 button {
@@ -21,35 +22,15 @@ button {
     color: white;
 }
 
-.audio-player {
-    max-width: 350px;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);
-    margin: auto;
-    color: var(--white);
-}
-  
-.artwork {
-    display: block;
-    margin: auto;
-    height: 200px;
-    width: 200px;
+.HomePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
-.track-info {
-    text-align: center;
-    z-index: 1;
-    position: relative;
-}
-
-.songtitle {
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.artist {
-    font-weight: 300;
-    margin-top: 0;
+.HomePageTitle {
+    font-size: 4em;
 }
 

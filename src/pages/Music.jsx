@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import ReactAudioPlayer from 'react-audio-player';
+import '../styles/Music.css'
+
+import Header from '../components/Header';
+import SideBar from '../components/SideBar'
 import AudioPlayer from '../components/AudioPlayer';
+
 
 function Music(props) {
 
@@ -15,46 +19,49 @@ function Music(props) {
         console.log(data[0].results[0].trackName)
     }
 
-    // MAKE INITIAL CALL FOR DATA INSIDE A USEEFFECT, SO IT ONLY RUNS ONCE ON COMPONENT LOAD
+    // INITIAL CALL FOR DATA SO IT ONLY RUNS ONCE ON COMPONENT LOAD
     useEffect(() => {
         getMusicData()
      }, [props.URL]); 
-
-    // // PLAY MEDIA   
-    // useState = {
-    //     play: false,
-    //     pause: true
-    // };
-
-    // audio = new Audio(this.props.url)
-
-    // togglePlay = () => {
-    //     this.setState({ play: !this.state.play }, () => {
-    //         this.state.play ? this.audio.play() : this.audio.pause();
-    //     })
-    // }
-
-
+     
+    const loading = () => {
+        return (
+            music ? loadMusic() : <h1>Loading Music...</h1>
+        )
+    }
 
     // CREATE A FUNCTION TO THAT WILL RETURN JSX
-    const loaded = () => {
-        return music.map((musicsong, idx) => (
+    const loadMusic = music.map((musicsong, idx) => {
+        return (
             <div className="MusicList" key={idx}>
                 <h1>{musicsong.artistName}</h1>
                 <h2>{musicsong.trackName}</h2>
                 <img src={musicsong.artworkUrl100} alt={musicsong.trackName} />
                 <div>
-                    {/* <button onClick={this.togglePlay}>
-                        <a href="{musicsong.previewUrl}">Preview Song</a> 
-                    </button> */}
-                    <a href={musicsong.previewUrl}>Preview Song</a>
-                    
-                    <ReactAudioPlayer src={musicsong.previewUrl} />                    
+                    <a className="PreviewSongLink" href={musicsong.previewUrl}>Preview Song</a>                   
                 </div>
             </div>
-        ))
-    }
-    return music ? loaded() : <h1>Loading Music...</h1>
+        )   
+    })
+
+    return (
+        <div className="MusicPage">
+            <div className="HeaderContainer">
+                <Header />
+            </div>
+            <div className="AppWrapper">
+                <div className="SideBarContainer">
+                    <SideBar />
+                </div>
+                <div className="MusicPagePlayer">
+                    <AudioPlayer tracks={music}/>
+                </div>
+                <div className="MusicListContainer">
+                    {loadMusic}
+                </div>
+            </div>
+        </div>  
+    )
 }
 
 export default Music

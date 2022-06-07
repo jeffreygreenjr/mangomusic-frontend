@@ -1,0 +1,20 @@
+.SideBar {
+    justify-content: start;
+}
+
+.SideNavBar {
+    background-color: slategray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 1%;
+    height: 90%;
+    width: 75%;
+    margin: auto;
+}
+
+.NavLinks {
+    color: white;
+    text-decoration: none;
+}

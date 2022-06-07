@@ -1,0 +1,20 @@
+.HeaderTitle {
+    color: white;
+}
+
+.NavBar {
+    background-color: slategray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 1%;
+    height: 90%;
+    width: 25%;
+    margin: auto;
+}
+
+.NavLinks {
+    color: white;
+    text-decoration: none;
+}

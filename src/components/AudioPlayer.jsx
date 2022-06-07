@@ -1,24 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
+import '../styles/AudioPlayer.css'
+
 import AudioControls from './AudioControls';
 
-
-function AudioPlayer() {
-
-    const tracks = [
-        {
-            trackName: 'Upside Down',
-            artistName: 'Jack Johnson',
-            artworkUrl100: 'https://is3-ssl.mzstatic.com/image/thumb/Music115/v4/08/11/d2/0811d2b3-b4d5-dc22-1107-3625511844b5/00602537869770.rgb.jpg/100x100bb.jpg',
-            previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5e/5b/3d/5e5b3df4-deb5-da78-5d64-fe51d8404d5c/mzaf_13341178261601361485.plus.aac.p.m4a'
-        }
-    ]
+function AudioPlayer(props) {
 
     // STATE
     const [trackIndex, setTrackIndex] = useState(0);
     const [trackProgress, setTrackProgress] = useState(0);
     const [playing, setPlaying] = useState(false);
+    const [tracks, setTracks] = useState(props.tracks || []);
 
-    const { trackName, artistName, artworkUrl100, previewUrl } = tracks[trackIndex];
+    const { trackName, artistName, artworkUrl100, previewUrl } = tracks[trackIndex] || {};
 
     // REFS
     const audioRef = useRef(new Audio(previewUrl));
@@ -28,12 +21,87 @@ function AudioPlayer() {
     const { duration } = audioRef.current;
 
     const toPrevTrack = () => {
-        console.log('TODO go to prev');
+        if (trackIndex - 1 < 0) {
+            setTrackIndex(tracks.length - 1);
+        } else {
+            setTrackIndex(trackIndex - 1)
+        }
     }
 
     const toNextTrack = () => {
-        console.log('TODO go to next');
+        if (trackIndex < tracks.length -1) {
+            setTrackIndex(trackIndex + 1);
+        } else {
+            setTrackIndex(0)
+        }
     }
+
+    const startTimer = () => {
+        // CLEAR ANY TIMERS ALREADY RUNNING
+        clearInterval(intervalRef.current);
+
+        intervalRef.current = setInterval(() => {
+            if (audioRef.current.ended) {
+                toNextTrack();
+            } else {
+                setTrackProgress(audioRef.current.currentTime)
+            }
+        }, [1000])
+    }
+
+    const onScrub = (value) => {
+        // CLEAR ANY TIMERS ALREADY RUNNING
+        clearInterval(intervalRef.current);
+        audioRef.current.currentTime = value;
+        setTrackProgress(audioRef.current.currentTime)
+    }
+
+    const onScrubEnd = () => {
+        if(!playing) {
+            setPlaying(true);
+        }
+        startTimer();
+    }
+
+    const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : '0%';
+    const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
+
+
+    useEffect(() => {
+        if (playing) {
+            audioRef.current.play();
+            startTimer()
+        } else {
+            clearInterval(intervalRef.current);
+            audioRef.current.pause()
+        }
+    }, [playing])
+
+    useEffect(() => {
+        // PAUSE AND CLEAN UP ON UNMOUNT
+        return () => {
+            audioRef.current.pause();
+            clearInterval(intervalRef.current)
+        }
+    }, [])
+
+    // HANDLE SETUP WHEN CHANGING TRACKS
+    useEffect(() => {
+        audioRef.current.pause();
+
+        audioRef.current = new Audio(previewUrl);
+        setTrackProgress(audioRef.current.currentTime);
+
+        if (isReady.current) {
+            audioRef.current.play();
+            setPlaying(true);
+            startTimer();
+        } else {
+            // SET THE ISREADY REF AS TRUE FOR THE NEXT PASS
+            isReady.current = true;
+        }
+    }, [trackIndex])
+
 
   return (
     <div className="audio-player">
@@ -52,6 +120,19 @@ function AudioPlayer() {
                 onNextClick={toNextTrack}
                 onPlayPauseClick={setPlaying}
             />
+            <input
+                type="range"
+                value={trackProgress}
+                step="1"
+                min="0"
+                max={duration ? duration : `${duration}`}
+                className="progress"
+                onChange={(e) => onScrub(e.target.value)}
+                onMouseUp={onScrubEnd}
+                onKeyUp={onScrubEnd}
+                style={{ background: trackStyling }}
+            />
+         
         </div>
 
     </div>
