@@ -16,7 +16,6 @@ function Music(props) {
         const res = await fetch(props.URL + "music")
         const data = await res.json()
         setMusic(data[0].results)
-        console.log(data[0].results[0].trackName)
     }
 
     // INITIAL CALL FOR DATA SO IT ONLY RUNS ONCE ON COMPONENT LOAD

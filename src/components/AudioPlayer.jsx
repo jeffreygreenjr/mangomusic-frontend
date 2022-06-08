@@ -10,8 +10,14 @@ function AudioPlayer(props) {
     const [trackProgress, setTrackProgress] = useState(0);
     const [playing, setPlaying] = useState(false);
     const [tracks, setTracks] = useState(props.tracks || []);
+    console.log(props.tracks)
 
-    const { trackName, artistName, artworkUrl100, previewUrl } = tracks[trackIndex] || {};
+    const { trackName, artistName, artworkUrl100, previewUrl } = props.tracks[trackIndex] || {};
+    console.log(trackIndex)
+    console.log(trackName)
+    console.log(previewUrl)
+    
+
 
     // REFS
     const audioRef = useRef(new Audio(previewUrl));
