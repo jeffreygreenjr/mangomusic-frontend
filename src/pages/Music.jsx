@@ -4,6 +4,7 @@ import '../styles/Music.css'
 import Header from '../components/Header';
 import SideBar from '../components/SideBar'
 import AudioPlayer from '../components/AudioPlayer';
+import ArtistSearchResults from '../components/ArtistSearchResults';
 
 
 function Music(props) {
@@ -53,12 +54,13 @@ function Music(props) {
                     <SideBar />
                 </div>
                 <div className="ContentContainer">
-                    {loading}
+                    
                     <div className="MusicPagePlayer">
                         <AudioPlayer tracks={music}/>
                     </div>
                     <div className="MusicListContainer">
-                        {loadMusic}
+                        <ArtistSearchResults />
+                        {loadMusic} 
                     </div>
                 </div>
             </div>
