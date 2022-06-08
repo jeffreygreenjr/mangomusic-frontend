@@ -105,34 +105,36 @@ function AudioPlayer(props) {
 
   return (
     <div className="audio-player">
-        <h5>Mango Music Player</h5>
-        <div className="track-info">
-            <img 
-                className="artwork"
-                src={artworkUrl100}
-                alt={`track artwork for ${trackName} by ${artistName}`}
-            />
-            <h2 className="songtitle">{trackName}</h2>
-            <h3 className="artist">{artistName}</h3>
-            <AudioControls
-                playing={playing}
-                onPrevClick={toPrevTrack}
-                onNextClick={toNextTrack}
-                onPlayPauseClick={setPlaying}
-            />
-            <input
-                type="range"
-                value={trackProgress}
-                step="1"
-                min="0"
-                max={duration ? duration : `${duration}`}
-                className="progress"
-                onChange={(e) => onScrub(e.target.value)}
-                onMouseUp={onScrubEnd}
-                onKeyUp={onScrubEnd}
-                style={{ background: trackStyling }}
-            />
-         
+        <div className="audio-player-content">
+            <div className="track-artwork">
+                <img 
+                    className="artwork"
+                    src={artworkUrl100}
+                    alt={`track artwork for ${trackName} by ${artistName}`}
+                />
+                <div className="track-info">
+                    <AudioControls
+                        playing={playing}
+                        onPrevClick={toPrevTrack}
+                        onNextClick={toNextTrack}
+                        onPlayPauseClick={setPlaying}
+                    />
+                    <input
+                        type="range"
+                        value={trackProgress}
+                        step="1"
+                        min="0"
+                        max={duration ? duration : `${duration}`}
+                        className="progress"
+                        onChange={(e) => onScrub(e.target.value)}
+                        onMouseUp={onScrubEnd}
+                        onKeyUp={onScrubEnd}
+                        style={{ background: trackStyling }}
+                    />
+                    <h2 className="songtitle">{trackName}</h2>
+                    <h3 className="artist">{artistName}</h3>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -1,4 +1,65 @@
 .audio-player {
+    height: 145px;
+    width: 500px;
+    border-radius: 20px;
+    padding: 25px 0;
+    background-color: slategrey;;
+    color: var(--white);
+}
+
+.audio-player-content {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100%;  
+}
+
+.track-artwork {
+    display: flex;
+    align-items: center;
+}
+
+.artwork {
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+.track-info {
+    text-align: center;
+    width: 100%;
+    align-items: center;
+}
+
+.audio-controls {
+    align-items: center;
+}
+
+.songtitle {
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.artist {
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+input[type=range] {
+	height: 10px;
+	-webkit-appearance: none;
+	width: 90%;
+	border-radius: 8px;
+	background: #3b7677;
+	transition: background 0.2s ease;
+	cursor: pointer;
+}
+
+/* -------MOBILE AUDIO PLAYER VIEW-------
+.audio-player {
     max-width: 350px;
     border-radius: 20px;
     padding: 24px;
@@ -39,4 +100,4 @@ input[type=range] {
 	background: #3b7677;
 	transition: background 0.2s ease;
 	cursor: pointer;
-}
+} */

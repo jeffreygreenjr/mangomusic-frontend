@@ -5,16 +5,40 @@
 .SideNavBar {
     background-color: slategray;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     border-radius: 10px;
-    padding: 1%;
-    height: 90%;
-    width: 75%;
-    margin: auto;
+    height: 85vh;
+    width: 150px;
+    margin: auto 7%;
+}
+
+.categories {
+    text-align: left;
+    padding-left: 9%;
+}
+
+.categorytitle {
+    color: #2f2e2e;
+}
+
+.categorytitle:hover {
+    color: #2f2e2e;
+}
+
+p {
+    color: white;
+}
+
+p:hover {
+    color: silver;
 }
 
 .NavLinks {
     color: white;
     text-decoration: none;
+}
+
+.sidebar-icons {
+    color: crimson;
 }

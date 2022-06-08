@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/AudioPlayer.css'
 import { GiPlayButton, GiPauseButton, GiPreviousButton, GiNextButton } from 'react-icons/gi'
 
 function AudioControls({ playing, onPlayPauseClick, onPrevClick, onNextClick }) {

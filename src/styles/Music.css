@@ -1,3 +1,35 @@
+.MusicPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.AppWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .ContentContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .MusicPagePlayer {
+      display: flex;
+      justify-content: center;
+      margin-left: 8%;
+  }
+
 .MusicList, .PreviewSongLink {
     color: white;
+}
+
+.MusicListContainer {
+    height: 65vh;
+    width: 485px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: auto 3%;
+	
 }

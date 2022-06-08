@@ -34,8 +34,8 @@ function Music(props) {
     const loadMusic = music.map((musicsong, idx) => {
         return (
             <div className="MusicList" key={idx}>
-                <h1>{musicsong.artistName}</h1>
-                <h2>{musicsong.trackName}</h2>
+                <h4>{musicsong.artistName}</h4>
+                <h3>{musicsong.trackName}</h3>
                 <img src={musicsong.artworkUrl100} alt={musicsong.trackName} />
                 <div>
                     <a className="PreviewSongLink" href={musicsong.previewUrl}>Preview Song</a>                   
@@ -53,11 +53,14 @@ function Music(props) {
                 <div className="SideBarContainer">
                     <SideBar />
                 </div>
-                <div className="MusicPagePlayer">
-                    <AudioPlayer tracks={music}/>
-                </div>
-                <div className="MusicListContainer">
-                    {loadMusic}
+                <div className="ContentContainer">
+                    {loading}
+                    <div className="MusicPagePlayer">
+                        <AudioPlayer tracks={music}/>
+                    </div>
+                    <div className="MusicListContainer">
+                        {loadMusic}
+                    </div>
                 </div>
             </div>
         </div>  

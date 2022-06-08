@@ -1,3 +1,16 @@
 .AboutPage {
     color: white;
 }
+
+.AboutNav {
+    color: white;
+}
+
+.NavLinks {
+    color: white;
+    text-decoration: none;
+}
+
+span {
+    font-size: 2em;
+}
